@@ -9,71 +9,92 @@
 
 <style>
 
-body{
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
 font-family:Arial;
-background:#050816;
-color:white;
+}
+
+body{
+background:#f5f5f5;
+color:#111;
 }
 
 .header{
-padding:25px;
-text-align:center;
-background:linear-gradient(90deg,#0f172a,#1d4ed8);
+background:#000;
+color:white;
+padding:22px;
 font-size:28px;
 font-weight:bold;
+text-align:center;
+letter-spacing:1px;
+box-shadow:0 4px 15px rgba(0,0,0,0.2);
 }
 
 .container{
 padding:20px;
+max-width:600px;
+margin:auto;
 }
 
 .card{
-background:#111827;
-border:1px solid #1e3a8a;
-border-radius:20px;
-padding:20px;
-margin-bottom:20px;
-box-shadow:0 0 20px rgba(37,99,235,0.2);
+background:white;
+padding:22px;
+border-radius:22px;
+margin-top:20px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
 }
 
-input{
+h2{
+margin-bottom:18px;
+font-size:24px;
+}
+
+input,select{
 width:100%;
-padding:14px;
-margin-top:12px;
+padding:15px;
+margin-top:14px;
 border:none;
-border-radius:12px;
-background:#1f2937;
-color:white;
+border-radius:14px;
+background:#f1f1f1;
 font-size:16px;
-box-sizing:border-box;
 }
 
 button{
 width:100%;
-padding:15px;
+padding:16px;
 margin-top:20px;
-border:none;
-border-radius:14px;
-background:#2563eb;
+background:#000;
 color:white;
+border:none;
+border-radius:16px;
 font-size:18px;
 font-weight:bold;
+cursor:pointer;
 }
 
 .quote{
-background:#0f172a;
-padding:18px;
-border-radius:16px;
+background:#000;
+color:white;
+padding:20px;
+border-radius:20px;
 margin-top:15px;
-border:1px solid #2563eb;
+}
+
+.quote p{
+margin-top:10px;
+font-size:16px;
 }
 
 .price{
-font-size:32px;
+font-size:34px;
 font-weight:bold;
-color:#60a5fa;
-margin-top:15px;
+margin-top:20px;
+}
+
+.label{
+font-weight:bold;
 }
 
 </style>
@@ -92,13 +113,27 @@ Policy Perfect Insurance
 
 <h2>Commercial Vehicle Quote</h2>
 
-<input type="number" id="od" placeholder="OD Premium">
+<select id="vehicleType">
 
-<input type="number" id="tp" placeholder="TP Premium">
+<option value="16500">GCV Pickup</option>
+
+<option value="35000">Truck</option>
+
+<option value="12400">Taxi</option>
+
+<option value="7800">Auto Rickshaw</option>
+
+<option value="22000">School Van</option>
+
+<option value="45000">Bus</option>
+
+</select>
+
+<input type="number" id="od" placeholder="OD Premium">
 
 <input type="number" id="imt23" placeholder="IMT23 Amount">
 
-<input type="number" id="discount" placeholder="Manual Discount %">
+<input type="number" id="discount" placeholder="Discount %">
 
 <button onclick="generateQuote()">
 Generate Quote
@@ -120,9 +155,9 @@ Generate Quote
 
 function generateQuote(){
 
-let od = parseFloat(document.getElementById("od").value) || 0;
+let tp = parseFloat(document.getElementById("vehicleType").value);
 
-let tp = parseFloat(document.getElementById("tp").value) || 0;
+let od = parseFloat(document.getElementById("od").value) || 0;
 
 let imt23 = parseFloat(document.getElementById("imt23").value) || 0;
 
@@ -142,23 +177,21 @@ document.getElementById("result").innerHTML = `
 
 <div class="quote">
 
-<h3>Commercial Vehicle Quote</h3>
+<p><span class="label">TP Premium:</span> ₹${tp}</p>
 
-<p>OD Premium: ₹${od}</p>
+<p><span class="label">OD Premium:</span> ₹${od}</p>
 
-<p>Discount: ₹${discountAmount.toFixed(0)}</p>
+<p><span class="label">Discount:</span> ₹${discountAmount.toFixed(0)}</p>
 
-<p>Final OD: ₹${finalOD.toFixed(0)}</p>
+<p><span class="label">Final OD:</span> ₹${finalOD.toFixed(0)}</p>
 
-<p>TP Premium: ₹${tp}</p>
+<p><span class="label">IMT23:</span> ₹${imt23}</p>
 
-<p>IMT23: ₹${imt23}</p>
+<hr style="margin-top:15px; margin-bottom:15px;">
 
-<hr>
+<p><span class="label">Net Premium:</span> ₹${netPremium.toFixed(0)}</p>
 
-<p>Net Premium: ₹${netPremium.toFixed(0)}</p>
-
-<p>GST 18%: ₹${gst.toFixed(0)}</p>
+<p><span class="label">GST 18%:</span> ₹${gst.toFixed(0)}</p>
 
 <div class="price">
 
