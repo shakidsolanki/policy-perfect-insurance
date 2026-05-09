@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Policy Perfect Insurance</title>
@@ -19,182 +16,242 @@ font-family:Arial;
 }
 
 body{
-background:#f3f3f3;
+background:#0b0b0b;
+color:white;
 padding:20px;
-color:#111;
 }
 
-.main{
-max-width:700px;
-margin:auto;
-}
-
-.card{
-background:white;
-padding:25px;
-border-radius:24px;
-box-shadow:0 5px 20px rgba(0,0,0,0.08);
-margin-bottom:20px;
-}
-
-h1{
+.title{
 font-size:32px;
+font-weight:bold;
 margin-bottom:25px;
 text-align:center;
 }
 
+.card{
+background:#121212;
+border:1px solid #262626;
+border-radius:24px;
+padding:22px;
+margin-bottom:20px;
+box-shadow:0 0 20px rgba(255,255,255,0.05);
+}
+
+h2{
+margin-bottom:18px;
+font-size:24px;
+}
+
 label{
 display:block;
-margin-top:18px;
+margin-top:16px;
 margin-bottom:8px;
-font-weight:bold;
-font-size:16px;
+color:#cfcfcf;
+font-size:14px;
 }
 
 input,select{
 width:100%;
 padding:16px;
 border:none;
-border-radius:16px;
-background:#f1f1f1;
-font-size:17px;
-}
-
-.radio-box{
-background:#f8f8f8;
-padding:18px;
-border-radius:18px;
-margin-top:18px;
-}
-
-.radio-title{
-font-size:17px;
-font-weight:bold;
-margin-bottom:14px;
+outline:none;
+border-radius:14px;
+background:#1d1d1d;
+color:white;
+font-size:16px;
 }
 
 .radio-group{
 display:flex;
-gap:35px;
+gap:15px;
+margin-top:10px;
 }
 
-.radio-group label{
-display:flex;
-align-items:center;
-gap:10px;
-font-size:18px;
-}
-
-.radio-group input{
-width:24px;
-height:24px;
-accent-color:black;
+.radio-btn{
+flex:1;
+padding:14px;
+border-radius:14px;
+background:#1d1d1d;
+text-align:center;
+cursor:pointer;
+border:1px solid #333;
 }
 
 button{
 width:100%;
 padding:18px;
-margin-top:25px;
 border:none;
 border-radius:18px;
-background:black;
-color:white;
-font-size:20px;
+background:white;
+color:black;
+font-size:18px;
 font-weight:bold;
+margin-top:25px;
+cursor:pointer;
 }
 
 .result{
-background:black;
-color:white;
-padding:25px;
-border-radius:22px;
 margin-top:25px;
+background:#181818;
+padding:20px;
+border-radius:20px;
+border:1px solid #2e2e2e;
 }
 
-.result p{
-margin-top:12px;
-font-size:17px;
+.row{
+display:flex;
+justify-content:space-between;
+margin-bottom:14px;
+font-size:16px;
 }
 
-.price{
-font-size:38px;
+.total{
+font-size:28px;
 font-weight:bold;
 margin-top:20px;
+text-align:center;
+color:#ffffff;
+}
+
+.small{
+font-size:13px;
+color:#999;
+margin-top:6px;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<div class="main">
+<div class="title">
+Policy Perfect Insurance
+</div>
 
 <div class="card">
 
-<h1>Commercial Vehicle</h1>
+<h2>Commercial Vehicle Calculator</h2>
+
+<label>Vehicle Type</label>
+
+<select id="vehicleType">
+<option value="gcv">Goods Carrying Vehicle (GCV)</option>
+<option value="pcv">Passenger Carrying Vehicle (PCV)</option>
+<option value="taxi">Taxi</option>
+<option value="bus">Bus</option>
+</select>
+
+<label>Carrier Type</label>
+
+<select id="carrier">
+<option value="public">Public Carrier</option>
+<option value="private">Private Carrier</option>
+</select>
 
 <label>IDV</label>
 <input type="number" id="idv" placeholder="Enter IDV">
 
-<label>OD Premium</label>
-<input type="number" id="od" placeholder="Enter OD Premium">
+<label>GVW (Kg)</label>
+<input type="number" id="gvw" placeholder="Enter GVW">
 
-<label>TP Premium</label>
-<input type="number" id="tp" placeholder="Enter TP Premium">
-
-<label>Discount %</label>
+<label>OD Discount (%)</label>
 <input type="number" id="discount" placeholder="Enter Discount">
 
-<div class="radio-box">
+<label>NCB (%)</label>
 
-<div class="radio-title">
-IMT 23
-</div>
+<select id="ncb">
+<option value="0">0%</option>
+<option value="20">20%</option>
+<option value="25">25%</option>
+<option value="35">35%</option>
+<option value="45">45%</option>
+<option value="50">50%</option>
+</select>
 
-<div class="radio-group">
+<label>IMT 23</label>
 
-<label>
-<input type="radio" name="imt23" value="yes">
-Yes
-</label>
+<select id="imt23">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
 
-<label>
-<input type="radio" name="imt23" value="no" checked>
-No
-</label>
+<label>PA To Owner Driver</label>
+<input type="number" id="pa" value="325">
 
-</div>
+<label>LL To Paid Driver</label>
+<input type="number" id="ll" value="50">
 
-</div>
-
-<div class="radio-box">
-
-<div class="radio-title">
-Restrict TPPD
-</div>
-
-<div class="radio-group">
-
-<label>
-<input type="radio" name="tppd" value="yes">
-Yes
-</label>
-
-<label>
-<input type="radio" name="tppd" value="no" checked>
-No
-</label>
-
-</div>
-
-</div>
+<label>Zero Dep Amount</label>
+<input type="number" id="zeroDep" value="0">
 
 <button onclick="calculatePremium()">
-CALCULATE PREMIUM
+Calculate Premium
 </button>
 
-<div id="result"></div>
+<div class="result" id="result" style="display:none;">
+
+<h2>Premium Breakup</h2>
+
+<div class="row">
+<span>Basic OD</span>
+<span id="basicOd"></span>
+</div>
+
+<div class="row">
+<span>IMT 23</span>
+<span id="imtResult"></span>
+</div>
+
+<div class="row">
+<span>NCB Less</span>
+<span id="ncbResult"></span>
+</div>
+
+<div class="row">
+<span>OD Discount</span>
+<span id="discountResult"></span>
+</div>
+
+<div class="row">
+<span>Final OD</span>
+<span id="finalOd"></span>
+</div>
+
+<hr style="margin:18px 0;border-color:#333;">
+
+<div class="row">
+<span>Third Party</span>
+<span id="tpPremium"></span>
+</div>
+
+<div class="row">
+<span>PA Owner</span>
+<span id="paResult"></span>
+</div>
+
+<div class="row">
+<span>LL Driver</span>
+<span id="llResult"></span>
+</div>
+
+<div class="row">
+<span>Zero Dep</span>
+<span id="zeroResult"></span>
+</div>
+
+<hr style="margin:18px 0;border-color:#333;">
+
+<div class="row">
+<span>GST</span>
+<span id="gstResult"></span>
+</div>
+
+<div class="total" id="finalPremium"></div>
+
+<div class="small">
+GST Calculated As:
+18% on OD + 5% on TP
+</div>
 
 </div>
 
@@ -204,91 +261,100 @@ CALCULATE PREMIUM
 
 function calculatePremium(){
 
-let od =
-parseFloat(document.getElementById("od").value) || 0;
+let idv = Number(document.getElementById('idv').value);
+let gvw = Number(document.getElementById('gvw').value);
+let discount = Number(document.getElementById('discount').value);
+let ncb = Number(document.getElementById('ncb').value);
+let pa = Number(document.getElementById('pa').value);
+let ll = Number(document.getElementById('ll').value);
+let zeroDep = Number(document.getElementById('zeroDep').value);
+let imt23 = document.getElementById('imt23').value;
 
-let tp =
-parseFloat(document.getElementById("tp").value) || 0;
+let odRate = 0.26;
 
-let discount =
-parseFloat(document.getElementById("discount").value) || 0;
+let basicOD = (idv * odRate) / 100;
 
-let discountAmount =
-(od * discount)/100;
+let imtAmount = 0;
+
+if(imt23 === "yes"){
+imtAmount = basicOD * 0.15;
+}
+
+let ncbLess = (basicOD * ncb) / 100;
+
+let discountLess = (basicOD * discount) / 100;
 
 let finalOD =
-od - discountAmount;
+basicOD +
+imtAmount -
+ncbLess -
+discountLess +
+zeroDep;
 
-let imt23 =
-document.querySelector('input[name="imt23"]:checked').value;
+let tp = 16049;
 
-let tppd =
-document.querySelector('input[name="tppd"]:checked').value;
-
-let imt23Charge = 0;
-
-if(imt23 == "yes"){
-
-imt23Charge = finalOD * 0.15;
-
+if(gvw > 7500){
+tp = 35313;
 }
 
-let tppdDiscount = 0;
-
-if(tppd == "yes"){
-
-tppdDiscount = 150;
-
+if(gvw > 12000){
+tp = 42134;
 }
 
-let netPremium =
+let totalBeforeGST =
 finalOD +
 tp +
-imt23Charge -
-tppdDiscount;
+pa +
+ll;
 
-let gst =
-netPremium * 0.18;
+let gstOD = finalOD * 0.18;
 
-let finalPremium =
-netPremium + gst;
+let gstTP = tp * 0.05;
 
-document.getElementById("result").innerHTML = `
+let totalGST = gstOD + gstTP;
 
-<div class="result">
+let finalTotal =
+totalBeforeGST +
+totalGST;
 
-<p>OD Premium : ₹${od}</p>
+document.getElementById('result').style.display='block';
 
-<p>Discount : ₹${discountAmount.toFixed(0)}</p>
+document.getElementById('basicOd').innerHTML =
+"₹" + basicOD.toFixed(0);
 
-<p>Final OD : ₹${finalOD.toFixed(0)}</p>
+document.getElementById('imtResult').innerHTML =
+"₹" + imtAmount.toFixed(0);
 
-<p>TP Premium : ₹${tp}</p>
+document.getElementById('ncbResult').innerHTML =
+"- ₹" + ncbLess.toFixed(0);
 
-<p>IMT23 Charge : ₹${imt23Charge.toFixed(0)}</p>
+document.getElementById('discountResult').innerHTML =
+"- ₹" + discountLess.toFixed(0);
 
-<p>TPPD Discount : ₹${tppdDiscount}</p>
+document.getElementById('finalOd').innerHTML =
+"₹" + finalOD.toFixed(0);
 
-<hr style="margin-top:18px; margin-bottom:18px;">
+document.getElementById('tpPremium').innerHTML =
+"₹" + tp.toFixed(0);
 
-<p>Net Premium : ₹${netPremium.toFixed(0)}</p>
+document.getElementById('paResult').innerHTML =
+"₹" + pa.toFixed(0);
 
-<p>GST 18% : ₹${gst.toFixed(0)}</p>
+document.getElementById('llResult').innerHTML =
+"₹" + ll.toFixed(0);
 
-<div class="price">
+document.getElementById('zeroResult').innerHTML =
+"₹" + zeroDep.toFixed(0);
 
-₹${finalPremium.toFixed(0)}
+document.getElementById('gstResult').innerHTML =
+"₹" + totalGST.toFixed(0);
 
-</div>
-
-</div>
-
-`;
+document.getElementById('finalPremium').innerHTML =
+"Total Premium ₹" + finalTotal.toFixed(0);
 
 }
 
 </script>
 
 </body>
-
 </html>
