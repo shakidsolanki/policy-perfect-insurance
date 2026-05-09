@@ -86,18 +86,17 @@ Policy Perfect Insurance
 <div class="card">
 <h2>Generate Premium Quote</h2>
 
-<input type="text" placeholder="Customer Name">
+<input type="text" id="name" placeholder="Customer Name">
 
-<input type="text" placeholder="Vehicle Number">
+<input type="text" id="vehicle" placeholder="Vehicle Number">
 
-<select>
-<option>Select Plan</option>
-<option>Comprehensive</option>
+<select id="plan">
 <option>Third Party</option>
+<option>Comprehensive</option>
 <option>Zero Dep</option>
 </select>
 
-<button>
+<button onclick="generateQuote()">
 Generate Quote
 </button>
 </div>
@@ -106,27 +105,59 @@ Generate Quote
 
 <h2>Best Premium Quotes</h2>
 
-<div class="quote">
-<h3>HDFC ERGO</h3>
-<p>Zero Dep Plan</p>
-<div class="price">₹8,450</div>
+<div id="result"></div>
+
 </div>
 
-<div class="quote">
-<h3>ICICI Lombard</h3>
-<p>Comprehensive Plan</p>
-<div class="price">₹7,980</div>
 </div>
 
+<script>
+
+function generateQuote(){
+
+let plan = document.getElementById("plan").value;
+
+let result = document.getElementById("result");
+
+if(plan=="Third Party"){
+
+result.innerHTML = `
 <div class="quote">
 <h3>TATA AIG</h3>
 <p>Third Party Plan</p>
 <div class="price">₹5,250</div>
 </div>
+`;
 
-</div>
+}
 
+if(plan=="Comprehensive"){
+
+result.innerHTML = `
+<div class="quote">
+<h3>ICICI Lombard</h3>
+<p>Comprehensive Plan</p>
+<div class="price">₹7,980</div>
 </div>
+`;
+
+}
+
+if(plan=="Zero Dep"){
+
+result.innerHTML = `
+<div class="quote">
+<h3>HDFC ERGO</h3>
+<p>Zero Dep Plan</p>
+<div class="price">₹8,450</div>
+</div>
+`;
+
+}
+
+}
+
+</script>
 
 </body>
 </html>
