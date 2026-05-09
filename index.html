@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+
+<meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -13,88 +15,149 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial;
+font-family:Arial, sans-serif;
 }
 
 body{
-background:#f5f5f5;
+background:#f4f4f4;
 color:#111;
 }
 
 .header{
 background:#000;
-color:white;
+color:#fff;
 padding:22px;
 font-size:28px;
 font-weight:bold;
 text-align:center;
 letter-spacing:1px;
+position:sticky;
+top:0;
+z-index:100;
 box-shadow:0 4px 15px rgba(0,0,0,0.2);
 }
 
 .container{
-padding:20px;
-max-width:600px;
+padding:18px;
+max-width:700px;
 margin:auto;
 }
 
 .card{
-background:white;
+background:#fff;
 padding:22px;
-border-radius:22px;
-margin-top:20px;
-box-shadow:0 5px 20px rgba(0,0,0,0.08);
+border-radius:24px;
+margin-bottom:20px;
+box-shadow:0 6px 20px rgba(0,0,0,0.08);
 }
 
 h2{
-margin-bottom:18px;
 font-size:24px;
+margin-bottom:20px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
+margin-bottom:18px;
+}
+
+.vehicle-box{
+background:#fafafa;
+border:2px solid transparent;
+border-radius:18px;
+padding:18px;
+text-align:center;
+cursor:pointer;
+transition:0.3s;
+}
+
+.vehicle-box.active{
+border:2px solid #000;
+background:#f0f0f0;
+}
+
+.vehicle-box img{
+width:60px;
+margin-bottom:10px;
+}
+
+.vehicle-box p{
+font-weight:bold;
+font-size:15px;
+}
+
+label{
+display:block;
+margin-top:16px;
+margin-bottom:8px;
+font-weight:bold;
+font-size:15px;
 }
 
 input,select{
 width:100%;
 padding:15px;
-margin-top:14px;
 border:none;
 border-radius:14px;
-background:#f1f1f1;
+background:#f2f2f2;
 font-size:16px;
+outline:none;
+}
+
+.row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
+}
+
+.switch{
+display:flex;
+align-items:center;
+justify-content:space-between;
+background:#f7f7f7;
+padding:14px 18px;
+border-radius:14px;
+margin-top:14px;
 }
 
 button{
 width:100%;
-padding:16px;
-margin-top:20px;
+padding:18px;
+border:none;
+border-radius:18px;
 background:#000;
 color:white;
-border:none;
-border-radius:16px;
 font-size:18px;
 font-weight:bold;
+margin-top:24px;
 cursor:pointer;
 }
 
-.quote{
+.result{
 background:#000;
 color:white;
-padding:20px;
-border-radius:20px;
-margin-top:15px;
+padding:24px;
+border-radius:22px;
+margin-top:25px;
 }
 
-.quote p{
-margin-top:10px;
+.result p{
+margin-top:12px;
 font-size:16px;
 }
 
 .price{
-font-size:34px;
+font-size:38px;
 font-weight:bold;
-margin-top:20px;
+margin-top:22px;
+color:#fff;
 }
 
-.label{
-font-weight:bold;
+.small{
+opacity:0.7;
+font-size:14px;
 }
 
 </style>
@@ -111,39 +174,147 @@ Policy Perfect Insurance
 
 <div class="card">
 
-<h2>Commercial Vehicle Quote</h2>
+<h2>Select Vehicle Category</h2>
 
-<select id="vehicleType">
+<div class="grid">
 
-<option value="16500">GCV Pickup</option>
+<div class="vehicle-box active">
+<p>Goods Carrying</p>
+</div>
 
-<option value="35000">Truck</option>
+<div class="vehicle-box">
+<p>Passenger Vehicle</p>
+</div>
 
-<option value="12400">Taxi</option>
+<div class="vehicle-box">
+<p>Taxi</p>
+</div>
 
-<option value="7800">Auto Rickshaw</option>
+<div class="vehicle-box">
+<p>School Bus</p>
+</div>
 
-<option value="22000">School Van</option>
-
-<option value="45000">Bus</option>
-
-</select>
-
-<input type="number" id="od" placeholder="OD Premium">
-
-<input type="number" id="imt23" placeholder="IMT23 Amount">
-
-<input type="number" id="discount" placeholder="Discount %">
-
-<button onclick="generateQuote()">
-Generate Quote
-</button>
+</div>
 
 </div>
 
 <div class="card">
 
-<h2>Quote Result</h2>
+<h2>Commercial Vehicle Quote</h2>
+
+<label>Vehicle Type</label>
+
+<select id="vehicle">
+
+<option value="16500">Pickup / Tata Ace</option>
+
+<option value="35000">Truck</option>
+
+<option value="45000">Trailer</option>
+
+<option value="22000">Taxi</option>
+
+<option value="52000">Bus</option>
+
+</select>
+
+<div class="row">
+
+<div>
+
+<label>IDV</label>
+
+<input type="number" id="idv" placeholder="Enter IDV">
+
+</div>
+
+<div>
+
+<label>Discount %</label>
+
+<input type="number" id="discount" placeholder="0">
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div>
+
+<label>OD Premium</label>
+
+<input type="number" id="od" placeholder="Enter OD">
+
+</div>
+
+<div>
+
+<label>IMT23</label>
+
+<input type="number" id="imt23" placeholder="0">
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div>
+
+<label>NCB %</label>
+
+<select id="ncb">
+
+<option value="0">0%</option>
+
+<option value="20">20%</option>
+
+<option value="25">25%</option>
+
+<option value="35">35%</option>
+
+<option value="45">45%</option>
+
+<option value="50">50%</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>LL Paid Driver</label>
+
+<input type="number" id="ll" placeholder="0">
+
+</div>
+
+</div>
+
+<label>NFPP</label>
+
+<input type="number" id="nfpp" placeholder="0">
+
+<div class="switch">
+
+<span>Zero Depreciation</span>
+
+<input type="checkbox" id="zero">
+
+</div>
+
+<div class="switch">
+
+<span>CNG/LPG</span>
+
+<input type="checkbox" id="cng">
+
+</div>
+
+<button onclick="calculate()">
+CALCULATE PREMIUM
+</button>
 
 <div id="result"></div>
 
@@ -153,21 +324,46 @@ Generate Quote
 
 <script>
 
-function generateQuote(){
+function calculate(){
 
-let tp = parseFloat(document.getElementById("vehicleType").value);
+let tp = parseFloat(document.getElementById("vehicle").value);
 
 let od = parseFloat(document.getElementById("od").value) || 0;
 
+let discount = parseFloat(document.getElementById("discount").value) || 0;
+
 let imt23 = parseFloat(document.getElementById("imt23").value) || 0;
 
-let discount = parseFloat(document.getElementById("discount").value) || 0;
+let ll = parseFloat(document.getElementById("ll").value) || 0;
+
+let nfpp = parseFloat(document.getElementById("nfpp").value) || 0;
+
+let ncb = parseFloat(document.getElementById("ncb").value) || 0;
+
+let zero = document.getElementById("zero").checked;
+
+let cng = document.getElementById("cng").checked;
 
 let discountAmount = (od * discount)/100;
 
-let finalOD = od - discountAmount;
+let odAfterDiscount = od - discountAmount;
 
-let netPremium = finalOD + tp + imt23;
+let ncbAmount = (odAfterDiscount * ncb)/100;
+
+let finalOD = odAfterDiscount - ncbAmount;
+
+let zeroDep = zero ? 3500 : 0;
+
+let cngCharge = cng ? 1500 : 0;
+
+let netPremium =
+finalOD +
+tp +
+imt23 +
+ll +
+nfpp +
+zeroDep +
+cngCharge;
 
 let gst = netPremium * 0.18;
 
@@ -175,29 +371,43 @@ let finalPremium = netPremium + gst;
 
 document.getElementById("result").innerHTML = `
 
-<div class="quote">
+<div class="result">
 
-<p><span class="label">TP Premium:</span> ₹${tp}</p>
+<p>TP Premium : ₹${tp}</p>
 
-<p><span class="label">OD Premium:</span> ₹${od}</p>
+<p>OD Premium : ₹${od}</p>
 
-<p><span class="label">Discount:</span> ₹${discountAmount.toFixed(0)}</p>
+<p>Discount : ₹${discountAmount.toFixed(0)}</p>
 
-<p><span class="label">Final OD:</span> ₹${finalOD.toFixed(0)}</p>
+<p>NCB Discount : ₹${ncbAmount.toFixed(0)}</p>
 
-<p><span class="label">IMT23:</span> ₹${imt23}</p>
+<p>Final OD : ₹${finalOD.toFixed(0)}</p>
 
-<hr style="margin-top:15px; margin-bottom:15px;">
+<p>IMT23 : ₹${imt23}</p>
 
-<p><span class="label">Net Premium:</span> ₹${netPremium.toFixed(0)}</p>
+<p>LL Paid Driver : ₹${ll}</p>
 
-<p><span class="label">GST 18%:</span> ₹${gst.toFixed(0)}</p>
+<p>NFPP : ₹${nfpp}</p>
+
+<p>Zero Dep : ₹${zeroDep}</p>
+
+<p>CNG/LPG : ₹${cngCharge}</p>
+
+<hr style="margin-top:18px; margin-bottom:18px; border-color:#333;">
+
+<p>Net Premium : ₹${netPremium.toFixed(0)}</p>
+
+<p>GST 18% : ₹${gst.toFixed(0)}</p>
 
 <div class="price">
 
 ₹${finalPremium.toFixed(0)}
 
 </div>
+
+<p class="small">
+Policy Perfect Insurance
+</p>
 
 </div>
 
