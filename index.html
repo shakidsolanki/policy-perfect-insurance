@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Policy Perfect Insurance</title>
@@ -35,7 +37,7 @@ margin-bottom:20px;
 box-shadow:0 0 20px rgba(37,99,235,0.2);
 }
 
-input,select{
+input{
 width:100%;
 padding:14px;
 margin-top:12px;
@@ -44,6 +46,7 @@ border-radius:12px;
 background:#1f2937;
 color:white;
 font-size:16px;
+box-sizing:border-box;
 }
 
 button{
@@ -67,12 +70,14 @@ border:1px solid #2563eb;
 }
 
 .price{
-font-size:28px;
+font-size:32px;
 font-weight:bold;
 color:#60a5fa;
+margin-top:15px;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -84,26 +89,26 @@ Policy Perfect Insurance
 <div class="container">
 
 <div class="card">
-<h2>Generate Premium Quote</h2>
 
-<input type="text" id="name" placeholder="Customer Name">
+<h2>Commercial Vehicle Quote</h2>
 
-<input type="text" id="vehicle" placeholder="Vehicle Number">
+<input type="number" id="od" placeholder="OD Premium">
 
-<select id="plan">
-<option>Third Party</option>
-<option>Comprehensive</option>
-<option>Zero Dep</option>
-</select>
+<input type="number" id="tp" placeholder="TP Premium">
+
+<input type="number" id="imt23" placeholder="IMT23 Amount">
+
+<input type="number" id="discount" placeholder="Manual Discount %">
 
 <button onclick="generateQuote()">
 Generate Quote
 </button>
+
 </div>
 
 <div class="card">
 
-<h2>Best Premium Quotes</h2>
+<h2>Quote Result</h2>
 
 <div id="result"></div>
 
@@ -115,49 +120,60 @@ Generate Quote
 
 function generateQuote(){
 
-let plan = document.getElementById("plan").value;
+let od = parseFloat(document.getElementById("od").value) || 0;
 
-let result = document.getElementById("result");
+let tp = parseFloat(document.getElementById("tp").value) || 0;
 
-if(plan=="Third Party"){
+let imt23 = parseFloat(document.getElementById("imt23").value) || 0;
 
-result.innerHTML = `
+let discount = parseFloat(document.getElementById("discount").value) || 0;
+
+let discountAmount = (od * discount)/100;
+
+let finalOD = od - discountAmount;
+
+let netPremium = finalOD + tp + imt23;
+
+let gst = netPremium * 0.18;
+
+let finalPremium = netPremium + gst;
+
+document.getElementById("result").innerHTML = `
+
 <div class="quote">
-<h3>TATA AIG</h3>
-<p>Third Party Plan</p>
-<div class="price">₹5,250</div>
+
+<h3>Commercial Vehicle Quote</h3>
+
+<p>OD Premium: ₹${od}</p>
+
+<p>Discount: ₹${discountAmount.toFixed(0)}</p>
+
+<p>Final OD: ₹${finalOD.toFixed(0)}</p>
+
+<p>TP Premium: ₹${tp}</p>
+
+<p>IMT23: ₹${imt23}</p>
+
+<hr>
+
+<p>Net Premium: ₹${netPremium.toFixed(0)}</p>
+
+<p>GST 18%: ₹${gst.toFixed(0)}</p>
+
+<div class="price">
+
+₹${finalPremium.toFixed(0)}
+
 </div>
-`;
 
-}
-
-if(plan=="Comprehensive"){
-
-result.innerHTML = `
-<div class="quote">
-<h3>ICICI Lombard</h3>
-<p>Comprehensive Plan</p>
-<div class="price">₹7,980</div>
 </div>
+
 `;
-
-}
-
-if(plan=="Zero Dep"){
-
-result.innerHTML = `
-<div class="quote">
-<h3>HDFC ERGO</h3>
-<p>Zero Dep Plan</p>
-<div class="price">₹8,450</div>
-</div>
-`;
-
-}
 
 }
 
 </script>
 
 </body>
+
 </html>
