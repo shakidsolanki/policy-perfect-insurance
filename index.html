@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Policy Perfect Insurance</title>
 
 <style>
@@ -12,53 +11,56 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial;
+font-family:Arial,sans-serif;
 }
 
 body{
-background:#0b0b0b;
-color:white;
-padding:20px;
+background:#f3f6fb;
+color:#222;
+padding:15px;
 }
 
-.title{
-font-size:32px;
+.header{
+background:#1976d2;
+color:white;
+padding:18px;
+border-radius:16px;
+font-size:28px;
 font-weight:bold;
-margin-bottom:25px;
-text-align:center;
+margin-bottom:20px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
 }
 
 .card{
-background:#121212;
-border:1px solid #262626;
-border-radius:24px;
-padding:22px;
+background:white;
+padding:20px;
+border-radius:18px;
+box-shadow:0 4px 20px rgba(0,0,0,0.08);
 margin-bottom:20px;
-box-shadow:0 0 20px rgba(255,255,255,0.05);
 }
 
 h2{
+margin-bottom:20px;
+color:#1976d2;
+}
+
+.input-group{
 margin-bottom:18px;
-font-size:24px;
 }
 
 label{
 display:block;
-margin-top:16px;
 margin-bottom:8px;
-color:#cfcfcf;
-font-size:14px;
+font-weight:bold;
 }
 
 input,select{
 width:100%;
-padding:16px;
-border:none;
-outline:none;
-border-radius:14px;
-background:#1d1d1d;
-color:white;
+padding:14px;
+border:1px solid #d0d7e2;
+border-radius:12px;
 font-size:16px;
+background:#fafafa;
 }
 
 .radio-group{
@@ -67,56 +69,50 @@ gap:15px;
 margin-top:10px;
 }
 
-.radio-btn{
-flex:1;
-padding:14px;
-border-radius:14px;
-background:#1d1d1d;
-text-align:center;
-cursor:pointer;
-border:1px solid #333;
-}
-
 button{
 width:100%;
-padding:18px;
+padding:16px;
 border:none;
-border-radius:18px;
-background:white;
-color:black;
+border-radius:14px;
+background:#1976d2;
+color:white;
 font-size:18px;
 font-weight:bold;
-margin-top:25px;
 cursor:pointer;
+margin-top:15px;
+}
+
+button:hover{
+background:#125eb1;
 }
 
 .result{
 margin-top:25px;
-background:#181818;
-padding:20px;
-border-radius:20px;
-border:1px solid #2e2e2e;
+padding:18px;
+background:#f8fbff;
+border-radius:14px;
+border:1px solid #d6e4f7;
 }
 
-.row{
+.result h3{
+margin-bottom:15px;
+color:#1976d2;
+}
+
+.result-row{
 display:flex;
 justify-content:space-between;
-margin-bottom:14px;
-font-size:16px;
+margin-bottom:12px;
+font-size:17px;
 }
 
 .total{
-font-size:28px;
+font-size:22px;
 font-weight:bold;
-margin-top:20px;
-text-align:center;
-color:#ffffff;
-}
-
-.small{
-font-size:13px;
-color:#999;
-margin-top:6px;
+color:#0d47a1;
+margin-top:18px;
+border-top:1px solid #ccc;
+padding-top:15px;
 }
 
 </style>
@@ -124,41 +120,57 @@ margin-top:6px;
 
 <body>
 
-<div class="title">
+<div class="header">
 Policy Perfect Insurance
 </div>
 
 <div class="card">
 
-<h2>Commercial Vehicle Calculator</h2>
+<h2>Goods Carrying Vehicle</h2>
 
-<label>Vehicle Type</label>
-
-<select id="vehicleType">
-<option value="gcv">Goods Carrying Vehicle (GCV)</option>
-<option value="pcv">Passenger Carrying Vehicle (PCV)</option>
-<option value="taxi">Taxi</option>
-<option value="bus">Bus</option>
-</select>
-
+<div class="input-group">
 <label>Carrier Type</label>
-
 <select id="carrier">
 <option value="public">Public Carrier</option>
 <option value="private">Private Carrier</option>
 </select>
+</div>
 
+<div class="input-group">
 <label>IDV</label>
 <input type="number" id="idv" placeholder="Enter IDV">
+</div>
 
-<label>GVW (Kg)</label>
+<div class="input-group">
+<label>Zone</label>
+<select id="zone">
+<option>A</option>
+<option>B</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Gross Vehicle Weight (GVW)</label>
 <input type="number" id="gvw" placeholder="Enter GVW">
+</div>
 
+<div class="input-group">
 <label>OD Discount (%)</label>
 <input type="number" id="discount" placeholder="Enter Discount">
+</div>
 
-<label>NCB (%)</label>
+<div class="input-group">
+<label>Electrical Accessories Value</label>
+<input type="number" id="electrical" placeholder="0">
+</div>
 
+<div class="input-group">
+<label>Non-Electrical Accessories Value</label>
+<input type="number" id="nonelectrical" placeholder="0">
+</div>
+
+<div class="input-group">
+<label>No Claim Bonus (%)</label>
 <select id="ncb">
 <option value="0">0%</option>
 <option value="20">20%</option>
@@ -167,90 +179,79 @@ Policy Perfect Insurance
 <option value="45">45%</option>
 <option value="50">50%</option>
 </select>
+</div>
 
+<div class="input-group">
+<label>Zero Depreciation</label>
+<input type="number" id="zerodep" placeholder="0">
+</div>
+
+<div class="input-group">
+<label>PA to Owner Driver</label>
+<input type="number" id="pa" value="325">
+</div>
+
+<div class="input-group">
+<label>LL to Paid Driver</label>
+<input type="number" id="ll" value="50">
+</div>
+
+<div class="input-group">
+<label>NFPP</label>
+<input type="number" id="nfpp" placeholder="0">
+</div>
+
+<div class="input-group">
 <label>IMT 23</label>
 
-<select id="imt23">
-<option value="yes">Yes</option>
-<option value="no">No</option>
-</select>
+<div class="radio-group">
+<label><input type="radio" name="imt23" value="yes"> Yes</label>
+<label><input type="radio" name="imt23" value="no" checked> No</label>
+</div>
 
-<label>PA To Owner Driver</label>
-<input type="number" id="pa" value="325">
-
-<label>LL To Paid Driver</label>
-<input type="number" id="ll" value="50">
-
-<label>Zero Dep Amount</label>
-<input type="number" id="zeroDep" value="0">
+</div>
 
 <button onclick="calculatePremium()">
-Calculate Premium
+CALCULATE PREMIUM
 </button>
 
 <div class="result" id="result" style="display:none;">
 
-<h2>Premium Breakup</h2>
+<h3>Premium Breakup</h3>
 
-<div class="row">
+<div class="result-row">
 <span>Basic OD</span>
-<span id="basicOd"></span>
+<span id="basicod"></span>
 </div>
 
-<div class="row">
-<span>IMT 23</span>
-<span id="imtResult"></span>
-</div>
-
-<div class="row">
-<span>NCB Less</span>
-<span id="ncbResult"></span>
-</div>
-
-<div class="row">
+<div class="result-row">
 <span>OD Discount</span>
-<span id="discountResult"></span>
+<span id="discountshow"></span>
 </div>
 
-<div class="row">
-<span>Final OD</span>
-<span id="finalOd"></span>
+<div class="result-row">
+<span>Final OD Premium</span>
+<span id="finalod"></span>
 </div>
 
-<hr style="margin:18px 0;border-color:#333;">
-
-<div class="row">
-<span>Third Party</span>
-<span id="tpPremium"></span>
+<div class="result-row">
+<span>Basic TP</span>
+<span id="tp"></span>
 </div>
 
-<div class="row">
-<span>PA Owner</span>
-<span id="paResult"></span>
+<div class="result-row">
+<span>Net Premium</span>
+<span id="netpremium"></span>
 </div>
 
-<div class="row">
-<span>LL Driver</span>
-<span id="llResult"></span>
+<div class="result-row">
+<span>GST (18%)</span>
+<span id="gst"></span>
 </div>
 
-<div class="row">
-<span>Zero Dep</span>
-<span id="zeroResult"></span>
-</div>
-
-<hr style="margin:18px 0;border-color:#333;">
-
-<div class="row">
-<span>GST</span>
-<span id="gstResult"></span>
-</div>
-
-<div class="total" id="finalPremium"></div>
-
-<div class="small">
-GST Calculated As:
-18% on OD + 5% on TP
+<div class="result-row total">
+<span>Total Premium</span>
+<span id="totalpremium"></span>
 </div>
 
 </div>
@@ -261,96 +262,87 @@ GST Calculated As:
 
 function calculatePremium(){
 
-let idv = Number(document.getElementById('idv').value);
-let gvw = Number(document.getElementById('gvw').value);
-let discount = Number(document.getElementById('discount').value);
-let ncb = Number(document.getElementById('ncb').value);
-let pa = Number(document.getElementById('pa').value);
-let ll = Number(document.getElementById('ll').value);
-let zeroDep = Number(document.getElementById('zeroDep').value);
-let imt23 = document.getElementById('imt23').value;
+let idv=parseFloat(document.getElementById("idv").value)||0;
+let gvw=parseFloat(document.getElementById("gvw").value)||0;
+let discount=parseFloat(document.getElementById("discount").value)||0;
+let electrical=parseFloat(document.getElementById("electrical").value)||0;
+let nonelectrical=parseFloat(document.getElementById("nonelectrical").value)||0;
+let zerodep=parseFloat(document.getElementById("zerodep").value)||0;
+let pa=parseFloat(document.getElementById("pa").value)||0;
+let ll=parseFloat(document.getElementById("ll").value)||0;
+let nfpp=parseFloat(document.getElementById("nfpp").value)||0;
+let ncb=parseFloat(document.getElementById("ncb").value)||0;
 
-let odRate = 0.26;
+let basicOD=idv*0.01751;
 
-let basicOD = (idv * odRate) / 100;
+let imt23=document.querySelector('input[name="imt23"]:checked').value;
 
-let imtAmount = 0;
+let imtAmount=0;
 
-if(imt23 === "yes"){
-imtAmount = basicOD * 0.15;
+if(imt23==="yes"){
+imtAmount=basicOD*0.15;
 }
 
-let ncbLess = (basicOD * ncb) / 100;
+let odBeforeDiscount=
+basicOD+
+electrical*0.04+
+nonelectrical*0.03+
+zerodep+
+imtAmount;
 
-let discountLess = (basicOD * discount) / 100;
+let odDiscountAmount=
+odBeforeDiscount*(discount/100);
 
-let finalOD =
-basicOD +
-imtAmount -
-ncbLess -
-discountLess +
-zeroDep;
+let odAfterDiscount=
+odBeforeDiscount-odDiscountAmount;
 
-let tp = 16049;
+let ncbAmount=
+odAfterDiscount*(ncb/100);
 
-if(gvw > 7500){
-tp = 35313;
+let finalOD=
+odAfterDiscount-ncbAmount;
+
+let tp=16049;
+
+if(gvw>12000){
+tp=35313;
 }
 
-if(gvw > 12000){
-tp = 42134;
-}
+let netPremium=
+finalOD+
+tp+
+pa+
+ll+
+nfpp;
 
-let totalBeforeGST =
-finalOD +
-tp +
-pa +
-ll;
+let gst=
+netPremium*0.18;
 
-let gstOD = finalOD * 0.18;
+let total=
+netPremium+gst;
 
-let gstTP = tp * 0.05;
+document.getElementById("result").style.display="block";
 
-let totalGST = gstOD + gstTP;
+document.getElementById("basicod").innerHTML=
+"₹"+basicOD.toFixed(0);
 
-let finalTotal =
-totalBeforeGST +
-totalGST;
+document.getElementById("discountshow").innerHTML=
+"₹"+odDiscountAmount.toFixed(0);
 
-document.getElementById('result').style.display='block';
+document.getElementById("finalod").innerHTML=
+"₹"+finalOD.toFixed(0);
 
-document.getElementById('basicOd').innerHTML =
-"₹" + basicOD.toFixed(0);
+document.getElementById("tp").innerHTML=
+"₹"+tp.toFixed(0);
 
-document.getElementById('imtResult').innerHTML =
-"₹" + imtAmount.toFixed(0);
+document.getElementById("netpremium").innerHTML=
+"₹"+netPremium.toFixed(0);
 
-document.getElementById('ncbResult').innerHTML =
-"- ₹" + ncbLess.toFixed(0);
+document.getElementById("gst").innerHTML=
+"₹"+gst.toFixed(0);
 
-document.getElementById('discountResult').innerHTML =
-"- ₹" + discountLess.toFixed(0);
-
-document.getElementById('finalOd').innerHTML =
-"₹" + finalOD.toFixed(0);
-
-document.getElementById('tpPremium').innerHTML =
-"₹" + tp.toFixed(0);
-
-document.getElementById('paResult').innerHTML =
-"₹" + pa.toFixed(0);
-
-document.getElementById('llResult').innerHTML =
-"₹" + ll.toFixed(0);
-
-document.getElementById('zeroResult').innerHTML =
-"₹" + zeroDep.toFixed(0);
-
-document.getElementById('gstResult').innerHTML =
-"₹" + totalGST.toFixed(0);
-
-document.getElementById('finalPremium').innerHTML =
-"Total Premium ₹" + finalTotal.toFixed(0);
+document.getElementById("totalpremium").innerHTML=
+"₹"+total.toFixed(0);
 
 }
 
