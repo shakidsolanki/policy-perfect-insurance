@@ -1,43 +1,131 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Policy Perfect Insurance</title>
-  <style>
-    body{
-      background:#000;
-      color:white;
-      font-family:Arial;
-      text-align:center;
-      padding:50px;
-    }
-    .box{
-      background:#111;
-      border:1px solid #1e3a8a;
-      border-radius:20px;
-      padding:30px;
-      max-width:500px;
-      margin:auto;
-    }
-    button{
-      background:#2563eb;
-      color:white;
-      border:none;
-      padding:15px 25px;
-      border-radius:12px;
-      font-size:18px;
-    }
-  </style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Policy Perfect Insurance</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#050816;
+color:white;
+}
+
+.header{
+padding:25px;
+text-align:center;
+background:linear-gradient(90deg,#0f172a,#1d4ed8);
+font-size:28px;
+font-weight:bold;
+}
+
+.container{
+padding:20px;
+}
+
+.card{
+background:#111827;
+border:1px solid #1e3a8a;
+border-radius:20px;
+padding:20px;
+margin-bottom:20px;
+box-shadow:0 0 20px rgba(37,99,235,0.2);
+}
+
+input,select{
+width:100%;
+padding:14px;
+margin-top:12px;
+border:none;
+border-radius:12px;
+background:#1f2937;
+color:white;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:15px;
+margin-top:20px;
+border:none;
+border-radius:14px;
+background:#2563eb;
+color:white;
+font-size:18px;
+font-weight:bold;
+}
+
+.quote{
+background:#0f172a;
+padding:18px;
+border-radius:16px;
+margin-top:15px;
+border:1px solid #2563eb;
+}
+
+.price{
+font-size:28px;
+font-weight:bold;
+color:#60a5fa;
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="box">
-  <h1>Policy Perfect Insurance</h1>
-  <h2>Premium Quote System</h2>
+<div class="header">
+Policy Perfect Insurance
+</div>
 
-  <p>Blue Black White Theme</p>
+<div class="container">
 
-  <button>Generate Quote</button>
+<div class="card">
+<h2>Generate Premium Quote</h2>
+
+<input type="text" placeholder="Customer Name">
+
+<input type="text" placeholder="Vehicle Number">
+
+<select>
+<option>Select Plan</option>
+<option>Comprehensive</option>
+<option>Third Party</option>
+<option>Zero Dep</option>
+</select>
+
+<button>
+Generate Quote
+</button>
+</div>
+
+<div class="card">
+
+<h2>Best Premium Quotes</h2>
+
+<div class="quote">
+<h3>HDFC ERGO</h3>
+<p>Zero Dep Plan</p>
+<div class="price">₹8,450</div>
+</div>
+
+<div class="quote">
+<h3>ICICI Lombard</h3>
+<p>Comprehensive Plan</p>
+<div class="price">₹7,980</div>
+</div>
+
+<div class="quote">
+<h3>TATA AIG</h3>
+<p>Third Party Plan</p>
+<div class="price">₹5,250</div>
+</div>
+
+</div>
+
 </div>
 
 </body>
